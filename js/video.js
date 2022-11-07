@@ -2,12 +2,10 @@ var video;
 
 window.addEventListener("load", function() {
 	console.log("Good job opening the window");
-	// this.document.getElementsByClassName("video");
 	video = document.querySelector('#player1');
 	video.load();
 	video.autoplay = false;
 	video.loop = false;
-	// optional console logs
 	console.log("Autoplay set to false");
 	console.log("Loop set to false");
 });
@@ -15,36 +13,31 @@ window.addEventListener("load", function() {
 
 // play button
 document.querySelector("#play").addEventListener("click", function() {
-	// console.log("Play Video");
 	video.play();
-	document.querySelector("#volume").innerHTML = video.volume;
+	var vol = 100 * video.volume;
+	document.querySelector("#volume").innerHTML = vol + "%";
+	console.log("Current volume is: " + vol + "%");
 });
 
 // pause button
 document.querySelector("#pause").addEventListener("click", function() {
-	// console.log("Play Video");
 	video.pause()
 });
 
 // slow down
 document.querySelector("#slower").addEventListener("click", function() {
-	// console.log("Play Video");
-	// video.playbackRate = 0.9 * video.playbackRate;
-	video.playbackRate = video.playbackRate - (0.1 * video.defaultPlaybackRate);
+	video.playbackRate = 0.9 * video.playbackRate;
 	console.log("New Slower Speed: " + video.playbackRate);
 });
 
 // speed up
 document.querySelector("#faster").addEventListener("click", function() {
-	// console.log("Play Video");
-	// video.playbackRate = 1.1 * video.playbackRate;
-	video.playbackRate = video.playbackRate + (0.1 * video.defaultPlaybackRate);
+	video.playbackRate = video.playbackRate / 0.9;
 	console.log("New Faster Speed: " + video.playbackRate);
 });
 
 // skip ahead
 document.querySelector("#skip").addEventListener("click", function() {
-	// console.log("Play Video");
 	var time_val = video.currentTime;
 	time_val += 10;
 
@@ -60,7 +53,6 @@ document.querySelector("#skip").addEventListener("click", function() {
 
 // mute
 document.querySelector("#mute").addEventListener("click", function() {
-	// console.log("Play Video");
 	if (document.querySelector("#mute").innerHTML == "Mute") {
 		video.muted = true;
 		document.querySelector("#mute").innerHTML = "Unmute";
@@ -73,28 +65,18 @@ document.querySelector("#mute").addEventListener("click", function() {
 
 // volume slider
 document.querySelector("#slider").addEventListener("click", function() {
-	// console.log("Play Video");
 	var vol = document.querySelector("#slider").value;
-	document.querySelector("#volume").innerHTML = vol;
+	document.querySelector("#volume").innerHTML = vol + "%";
+	video.volume = vol / 100;
 });
 
 // styled
 document.querySelector("#vintage").addEventListener("click", function() {
-	// console.log("Play Video");
-	// var filter = document.querySelector("video");
+
 	video.classList.add("oldSchool");
 });
 
 // original
 document.querySelector("#orig").addEventListener("click", function() {
-	// console.log("Play Video");
 	video.classList.remove("oldSchool");
 });
-
-// document.querySelector("#play").addEventListener("click", function() {
-// 	console.log("Play Video");
-// });
-
-// when mute, do I have to change the volume is:
-// is my current speed up and slow down correct?
-
